@@ -21,7 +21,8 @@ class DocumentDifferenceApp:
         Initializes the DocumentDifferenceApp with a Snowflake session and configuration parameters.
         """
         self.session = session
-        self.stage_path = f"@{database_name}.{schema_name}.{stage_path}"
+        self.stage_path_url = f"@{database_name}.{schema_name}.{stage_path}"
+        self.stage_path=stage_path
         self.database_name = database_name
         self.schema_name = schema_name
         self.chunked_table = chunked_table
@@ -150,7 +151,7 @@ class DocumentDifferenceApp:
         """
         Retrieves the list of document names from the storage.
         """
-        doc_names = self.session.sql(f"list {self.stage_path}").collect()
+        doc_names = self.session.sql(f"list {self.stage_path_url}").collect()
         doc_df = pd.DataFrame(doc_names)
         doc_list = doc_df['name'].apply(self.split_text)
         return doc_list
