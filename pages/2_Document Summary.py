@@ -12,7 +12,7 @@ import json
 from snowflake.snowpark.context import get_active_session
 
 class SummaryApp:
-    def __init__(self, session, stage_path='@pdf_store', database_name='BAMBOO', 
+    def __init__(self, session, stage_path='pdf_store', database_name='BAMBOO', 
                  schema_name='BILLS', chunked_table='CHUNKED_PDF_SUM', 
                  summary_table='SUMMARIZED_CONTENT'):
         """
@@ -81,7 +81,6 @@ class SummaryApp:
         Summarizes the chunks of the specified PDF file.
         """
         file_selected = file_name.replace('.pdf', '')
-        st.write(file_selected)
         file_list_summarized = self.session.sql(f"""
             SELECT DISTINCT "file_name" 
             FROM {self.database_name}.{self.schema_name}.{self.summary_table}
@@ -100,8 +99,8 @@ class SummaryApp:
                 FROM {self.database_name}.{self.schema_name}.{self.chunked_table} 
                 WHERE "file_name" = '{file_selected}'
             """).to_pandas()
-            st.write(insert_sql)
             tbl_write = self.session.create_dataframe(insert_sql)
+            
             tbl_write.write.mode("append").save_as_table(f"{self.database_name}.{self.schema_name}.{self.summary_table}")
 
             summary_df = self.session.sql(f"""
