@@ -99,6 +99,7 @@ class SummaryApp:
                 FROM {self.database_name}.{self.schema_name}.{self.chunked_table} 
                 WHERE "file_name" = '{file_selected}'
             """).to_pandas()
+            st.write(insert_sql)
             tbl_write = self.session.create_dataframe(insert_sql)
             tbl_write.write.mode("append").save_as_table(f"{self.database_name}.{self.schema_name}.{self.summary_table}")
 
