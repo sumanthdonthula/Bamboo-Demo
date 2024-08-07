@@ -208,7 +208,8 @@ def main():
     option = st.selectbox('What Document Would you like to Summarize?', doc_list, index=None)
 
     if option:
-        file_path = f"@pdf_store/{option}"
+        file_path = f"{summary_app.stage_path}/{option}"
+        
         summary_app.process_load(file_path)
         st.write('You selected 📝:', option)
         summary_df = summary_app.summarize(option)
