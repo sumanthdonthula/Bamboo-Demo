@@ -81,6 +81,7 @@ class SummaryApp:
         Summarizes the chunks of the specified PDF file.
         """
         file_selected = file_name.replace('.pdf', '')
+        st.write(file_selected)
         file_list_summarized = self.session.sql(f"""
             SELECT DISTINCT "file_name" 
             FROM {self.database_name}.{self.schema_name}.{self.summary_table}
