@@ -1,0 +1,7 @@
+streamlit
+snowflake-snowpark-python
+langchain
+PyPDF2
+pandas
+pytz
+python-dotenv
