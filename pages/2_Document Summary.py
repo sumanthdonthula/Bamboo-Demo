@@ -48,6 +48,7 @@ class SummaryApp:
         Processes and loads the PDF text into the database if not already present.
         """
         file_selected = file_url.replace(f'{self.stage_path}/', '').replace('.pdf', '')
+        st.write(file_selected)
         file_list_summarized = self.session.sql(f"""
             SELECT DISTINCT "file_name" 
             FROM {self.database_name}.{self.schema_name}.{self.chunked_table}
