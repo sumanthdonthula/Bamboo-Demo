@@ -126,12 +126,6 @@ CREATE TABLE IF NOT EXISTS {db_name}.{schema_name}.{summarized_content_sum} (
 """
     sql_statements.append(create_table_summarized_sum)
 
-    create_streamlit_app = f"""CREATE OR REPLACE STREAMLIT {db_name}.{schema_name}.BAMBOO_BOT
-ROOT_LOCATION = '@"{DB_INTEGRATIONS}"."{SCHEMA_GIT}"."FROSTY_PAWS"/branches/main/app/streamlit'
-MAIN_FILE = '/Home.py'
-QUERY_WAREHOUSE = COMPUTE_WH;"""
-    sql_statements.append(create_streamlit_app)
-
     
     
     for smt in sql_statements:
