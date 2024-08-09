@@ -8,11 +8,11 @@ import snowflake.connector
 def main():
 
     connection_parameters = {
-        "user": os.getenv("USER"),
-        "password": os.getenv("PASSWORD"),
-        "account": os.getenv("ACCOUNT"),
-        "role": os.getenv("ROLE"),
-        "warehouse":os.getenv("WAREHOUSE")
+        "user": os.getenv("SNOWFLAKE_USER"),
+        "password": os.getenv("SNOWFLAKE_PASSWORD"),
+        "account": os.getenv("SNOWFLAKE_ACCOUNT"),
+        "role": os.getenv("SNOWFLAKE_ROLE"),
+        "warehouse":os.getenv("SNOWFLAKE_WAREHOUSE")
     }
     conn =  snowflake.connector.connect(user=connection_parameters["user"],
     password=connection_parameters["password"],
