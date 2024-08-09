@@ -44,6 +44,9 @@ def main():
 
     sql_statements=[]
 
+    database_drop = f"drop database BAMBOO"    
+    sql_statements.append(database_drop)
+
     database_smt=f"create database if not exists {db_name}"
     
     sql_statements.append(database_smt)
