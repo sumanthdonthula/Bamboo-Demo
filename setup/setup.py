@@ -7,24 +7,18 @@ import snowflake.connector
 
 def main():
 
-    try:
-        connection_parameters = {
+    connection_parameters = {
         "user": os.getenv("user"),
         "password": os.getenv("password"),
         "account": os.getenv("account"),
         "role": os.getenv("role"),
         "warehouse":os.getenv("warehouse")
     }
-        conn =  snowflake.connector.connect(user=connection_parameters["user"],
-        password=connection_parameters["password"],
-        account=connection_parameters["account"],
-        warehouse=connection_parameters["warehouse"],
-        role=connection_parameters["role"])
-
-        print("hi")
-
-    except:
-        session=Session
+    conn =  snowflake.connector.connect(user=connection_parameters["user"],
+    password=connection_parameters["password"],
+    account=connection_parameters["account"],
+    warehouse=connection_parameters["warehouse"],
+    role=connection_parameters["role"])
     
     with open('config_file.json', 'r') as f:
         config = json.load(f)
